@@ -17,6 +17,11 @@ public class RNG {
     private long state;
     private long inc;
 
+    public RNG(long initState, long initseq, boolean dummy) {
+        this.state = initState;
+        this.inc = initseq;
+    }
+
     public RNG(long initState, long initseq) {
         this.state = 0;
         this.inc = (initseq << 1) | 1;

@@ -18,6 +18,14 @@ public class Ray {
         this.dir = null;
     }
 
+    @Override
+    public String toString() {
+        return "Ray{" +
+                "origin=" + origin +
+                ", dir=" + dir +
+                '}';
+    }
+
     public Point3d apply(double t) {
         return origin.add(dir.mult(t));
     }

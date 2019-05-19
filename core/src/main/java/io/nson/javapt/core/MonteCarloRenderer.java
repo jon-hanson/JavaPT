@@ -13,10 +13,9 @@ public class MonteCarloRenderer extends Renderer {
     public RGB radiance(RNG rng, Ray ray, int depth, RGB acc, RGB att) {
         return scene.intersect(ray)
                 .map(isectP -> {
-                    //logger.info("isect=" + isectP.shape + " acc=" + acc);
                     final Vector3d n = isectP.shape.normal(isectP.t);
                     final Vector3d nl = n.dot(ray.dir) < 0 ? n : n.neg();
-
+//logger.info("p={} isect={} acc={} nl={}", isectP.t, isectP.shape, acc, nl);
                     final int newDepth = depth + 1;
 
                     final RGB colour = isectP.shape.material().colour().mult(att);

@@ -10,7 +10,7 @@ public class Debug {
 
     public static void main(String[] args) {
         final Config cfg = new Config(
-                "scenes/cornell2.json",
+                "scenes/cornell3.json",
                 800, 800,
                 16,
                 0,
@@ -19,23 +19,37 @@ public class Debug {
                 Optional.empty(),
                 Optional.empty()
         );
+        //test(cfg, "scenes/cornell2.json");
+        test(cfg, "scenes/cornell3.json");
+    }
 
+    static void test(Config cfg, String name) {
         final Renderer rdr = new MonteCarloRenderer(
                 cfg.width,
                 cfg.height,
                 cfg.threads,
-                SceneIO.load(cfg.sceneFile)
+                SceneIO.load(name)
         );
 
-        final RNG rng = new RNG(0, 0);
-        final int sx = 265;
-        final int sy = 300;
+//        for (long b = 0; b < 100000; ++b) {
+//            for (long a = 0; a < 100000; ++a) {
 
-        final SuperSamp ss = rdr.render(rng, sx, sy);
+                final RNG rng = new RNG(5, 99999);
 
-        logger.info("result.c00={}", ss.c00);
-        logger.info("result.c10={}", ss.c10);
-        logger.info("result.c01={}", ss.c01);
-        logger.info("result.c11={}", ss.c11);
+                final int sx = 265;
+                final int sy = 300;
+
+                final RGB ss = rdr.subPixelRad(rng, sx, sy, 1, 1);
+                logger.info("RGB={}", ss);
+//
+//                if (ss.max() > 1e-8) {
+//                    logger.info("{}, {} -> {}", a, b, ss);
+//                    break;
+//                    //        logger.info("result.c10={}", ss.c10);
+//                    //        logger.info("result.c01={}", ss.c01);
+//                    //        logger.info("result.c11={}", ss.c11);
+//                }
+//            }
+//        }
     }
 }

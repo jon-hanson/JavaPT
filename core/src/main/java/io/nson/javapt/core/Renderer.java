@@ -71,6 +71,9 @@ public abstract class Renderer implements AutoCloseable {
     }
 
     public SuperSamp render(RNG rng, int x, int y) {
+//        if (x != 265 && y != 300) {
+//            return SuperSamp.BLACK;
+//        }
         return new SuperSamp(
             subPixelRad(rng, x, y, 0, 0),
             subPixelRad(rng, x, y, 1, 0),
@@ -79,7 +82,7 @@ public abstract class Renderer implements AutoCloseable {
         );
     }
 
-    protected RGB subPixelRad(RNG rng, int x, int y, double cx, double cy) {
+    public RGB subPixelRad(RNG rng, int x, int y, double cx, double cy) {
 
         final double d1 = rng.nextDouble01();
         final double d2 = rng.nextDouble01();

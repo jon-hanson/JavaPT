@@ -17,7 +17,7 @@ public class Main {
         final Config cfg = new Config(
                 "scenes/cornell2.json",
                 800, 800,
-                16,
+                64,
                 0,
                 8,
                 true,

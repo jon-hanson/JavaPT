@@ -2,8 +2,6 @@ package io.nson.javapt.core;
 
 import java.util.*;
 
-import static java.util.stream.Collectors.toList;
-
 public class Scene {
     public static class Intersection<T> {
         public final Shape shape;
@@ -29,13 +27,14 @@ public class Scene {
     }
 
     public Optional<Intersection<Point3d>> intersect(Ray ray) {
-        List<Scene.Intersection<Double>> isects = shapes.stream()
-                .map(shp -> shp.intersect(ray).map(t -> new Intersection<>(shp, t)))
-                .filter(Optional::isPresent)
+        return shapes.stream()
+                .map(shp -> {
+                    final OptionalDouble optIsect = shp.intersect(ray);
+                    return optIsect.isPresent() ?
+                            Optional.of(new Intersection<>(shp, optIsect.getAsDouble())) :
+                            Optional.<Scene.Intersection<Double>>empty();
+                }).filter(Optional::isPresent)
                 .map(Optional::get)
-                .collect(toList());
-
-        return isects.stream()
                 .min(Comparator.comparingDouble(l -> l.t))
                 .map(isectT -> new Intersection<>(isectT.shape, ray.apply(isectT.t)));
     }
