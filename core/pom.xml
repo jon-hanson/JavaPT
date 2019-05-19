@@ -17,6 +17,11 @@
     <dependencies>
         <dependency>
             <groupId>org.typemeta</groupId>
+            <artifactId>funcj-core</artifactId>
+            <version>${funcj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.typemeta</groupId>
             <artifactId>funcj-codec-core</artifactId>
             <version>${funcj.version}</version>
         </dependency>
