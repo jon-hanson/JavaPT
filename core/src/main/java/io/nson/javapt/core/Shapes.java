@@ -1,8 +1,12 @@
 package io.nson.javapt.core;
 
+import org.apache.logging.log4j.*;
+
 import java.util.*;
 
 public abstract class Shapes {
+    private static final Logger logger = LogManager.getLogger(Shapes.class);
+
     public static class Sphere extends AbstractShape {
         final Point3d centre;
         final double radius;
@@ -44,6 +48,7 @@ public abstract class Shapes {
 
         @Override
         public Vector3d normal(Point3d p) {
+            //logger.info("Normal({}) -> {}", p, p.sub(centre).normalise());
             return p.sub(centre).normalise();
         }
     }

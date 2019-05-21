@@ -1,19 +1,13 @@
 package io.nson.javapt.core;
 
+import io.nson.javapt.autodiff.*;
+
 import java.util.OptionalDouble;
 
-public class AbstractSDF extends AbstractShape implements SDF {
+public abstract class AbstractSDF extends AbstractShape implements SDF {
 
     public AbstractSDF(String name, Material material) {
         super(name, material);
-    }
-
-    public double distance(Point3d p) {
-        return distance(p.x, p.y, p.z);
-    }
-
-    public double distance(double x, double y, double z) {
-        return distance(new Point3d(x, y, z));
     }
 
     @Override
@@ -33,25 +27,36 @@ public class AbstractSDF extends AbstractShape implements SDF {
             t += dist;
         }
 
-        return OptionalDouble.empty();
+        return OptionalDouble.of(t);
     }
 
     @Override
     public Vector3d normal(Point3d p) {
-        double x;
-        double y;
-        double z;
+        return deriveNormal(p);
+    }
+
+    private Vector3d deriveNormal(Point3d p) {
+        final double dx = distance(new DualPoint3d(new DualNd(p.x, 1), DualNd.real(p.y), DualNd.real(p.z))).d;
+        final double dy = distance(new DualPoint3d(DualNd.real(p.x), new DualNd(p.y, 1), DualNd.real(p.z))).d;
+        final double dz = distance(new DualPoint3d(DualNd.real(p.x), DualNd.real(p.y), new DualNd(p.z, 1))).d;
+        return new Vector3d(dx, dy, dz).normalise();
+    }
+
+    private Vector3d estimateNormal(Point3d p) {
+        double dx;
+        double dy;
+        double dz;
 
         double eps = N_EPS;
 
         do {
-            x = distance(p.x + eps, p.y, p.z) - distance(p.x - eps, p.y, p.z);
-            y = distance(p.x, p.y + eps, p.z) - distance(p.x, p.y - eps, p.z);
-            z = distance(p.x, p.y, p.z + eps) - distance(p.x, p.y, p.z - eps);
+            dx = distance(new Point3d(p.x + eps, p.y, p.z)) - distance(new Point3d(p.x - eps, p.y, p.z));
+            dy = distance(new Point3d(p.x, p.y + eps, p.z)) - distance(new Point3d(p.x, p.y - eps, p.z));
+            dz = distance(new Point3d(p.x, p.y, p.z + eps)) - distance(new Point3d(p.x, p.y, p.z - eps));
 
             eps *= 10f;
-        } while (x == 0.0f && y == 0.0f && z == 0.0f);
+        } while (dx == 0.0f && dy == 0.0f && dz == 0.0f);
 
-        return new Vector3d(x, y, z).normalise();
+        return new Vector3d(dx, dy, dz).normalise();
     }
 }

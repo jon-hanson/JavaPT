@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         final Config cfg = new Config(
-                "scenes/cornell2.json",
+                "scenes/cornell3.json",
                 800, 800,
                 64,
                 0,

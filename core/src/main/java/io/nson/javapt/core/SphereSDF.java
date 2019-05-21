@@ -1,6 +1,11 @@
 package io.nson.javapt.core;
 
+import io.nson.javapt.autodiff.*;
+import org.apache.logging.log4j.*;
+
 public class SphereSDF extends AbstractSDF {
+    private static final Logger logger = LogManager.getLogger(SphereSDF.class);
+
     public final Material material;
     public final Point3d centre;
     public final double radius;
@@ -25,7 +30,13 @@ public class SphereSDF extends AbstractSDF {
     }
 
     @Override
-    public Vector3d normal(Point3d p) {
-        return p.sub(centre).normalise();
+    public DualNd distance(DualPoint3d p) {
+        return p.sub(DualPoint3d.valueOf(centre)).length().sub(DualNd.real(radius));
     }
+//
+//    @Override
+//    public Vector3d normal(Point3d p) {
+//        //logger.info("Normal({}) -> {}", p, p.sub(centre).normalise());
+//        return p.sub(centre).normalise();
+//    }
 }
