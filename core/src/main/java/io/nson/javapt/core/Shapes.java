@@ -48,7 +48,8 @@ public abstract class Shapes {
 
         @Override
         public Vector3d normal(Point3d p) {
-            //logger.info("Normal({}) -> {}", p, p.sub(centre).normalise());
+//            final Vector3d v = p.sub(centre).normalise();
+//            logger.info("Normal({}) -> {}", p, v);
             return p.sub(centre).normalise();
         }
     }

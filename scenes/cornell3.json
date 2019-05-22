@@ -168,6 +168,13 @@
         {
             "@type":"io.nson.javapt.core.Shapes$Sphere",
             "@value":{
+                "centre":{
+                    "x":27,
+                    "y":60,
+                    "z":47
+                },
+                "radius":16.5,
+                "name":"mirror",
                 "material":{
                     "@type":"io.nson.javapt.core.Reflective",
                     "@value":{
@@ -182,19 +189,19 @@
                             "blue":0
                         }
                     }
-                },
-                "centre":{
-                    "x":27,
-                    "y":60,
-                    "z":47
-                },
-                "radius":16.5,
-                "name":"mirror"
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.Shapes$Sphere",
             "@value":{
+                "centre":{
+                    "x":73,
+                    "y":16.5,
+                    "z":78
+                },
+                "radius":16.5,
+                "name":"glass",
                 "material":{
                     "@type":"io.nson.javapt.core.Refractive",
                     "@value":{
@@ -209,35 +216,12 @@
                             "blue":0
                         }
                     }
-                },
-                "centre":{
-                    "x":73,
-                    "y":16.5,
-                    "z":78
-                },
-                "radius":16.5,
-                "name":"glass"
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.SphereSDF",
             "@value":{
-                "material":{
-                    "@type":"io.nson.javapt.core.Diffuse",
-                    "@value":{
-                        "colour":{
-                            "red":0.75,
-                            "green":0.75,
-                            "blue":0.25
-                        },
-                        "emColour":{
-                            "red":0,
-                            "green":0,
-                            "blue":0
-                        },
-                        "emis":false
-                    }
-                },
                 "centre":{
                     "x":27,
                     "y":16.5,
@@ -245,7 +229,7 @@
                 },
                 "radius":16.5,
                 "name":"diff",
-                "*material":{
+                "material":{
                     "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
                         "colour":{

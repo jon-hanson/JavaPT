@@ -9,7 +9,8 @@ import static io.nson.javapt.core.Material.*;
 public abstract class Scenes {
     public static void main(String[] args) {
         //SceneIO.save(cornell(), "scenes/cornell.json");
-        SceneIO.save(cornell2(), "scenes/cornell2.json");
+        //SceneIO.save(cornell2(), "scenes/cornell2.json");
+        SceneIO.save(cornell3(), "scenes/cornell3.json");
         //SceneIO.save(horizon(), "scenes/horizon.json");
         //SceneIO.save(redGreenBlue(), "scenes/rgb.json");
     }
@@ -52,7 +53,7 @@ public abstract class Scenes {
                         new Sphere("mirror", reflective(RGB.WHITE.mult(0.999)),new Point3d(27, 60, 47), 16.5),
                         new Sphere("glass", refractive(RGB.WHITE.mult(0.999)),new Point3d(73, 16.5, 78), 16.5),
 
-                        new SphereSDF("diff", diffuse(0.75, 0.75, 0.25),new Point3d(27, 16.5, 100), 16.5),
+                        new Sphere("diff", diffuse(0.75, 0.75, 0.25),new Point3d(27, 16.5, 100), 16.5),
 
                         new Sphere("light", emissive(RGB.WHITE.mult(12)),new Point3d(50, 681.6 - 0.27, 81.6), 600.0)
                 );
@@ -63,6 +64,32 @@ public abstract class Scenes {
                             new Vector3d(0, -0.042612, -1)
                     ), 0.5135
             ), objects);
+    }
+
+    public static Scene cornell3() {
+        final List<Shape> objects =
+                Arrays.asList(
+                        new Plane("left", diffuse(0.75, 0.25, 0.25), Plane.Axis.X, true, 1),
+                        new Plane("right", diffuse(0.25, 0.25, 0.75), Plane.Axis.X, false, 99),
+                        new Plane("back", diffuse(0.75, 0.75, 0.75), Plane.Axis.Z, true, 0),
+                        new Plane("front", diffuse(RGB.BLACK), Plane.Axis.Z, false, 170),
+                        new Plane("bottom", diffuse(0.75, 0.75, 0.75), Plane.Axis.Y, true, 0),
+                        new Plane("top", diffuse(0.75, 0.75, 0.75), Plane.Axis.Y, false, 81.6),
+
+                        new Sphere("mirror", reflective(RGB.WHITE.mult(0.999)),new Point3d(27, 60, 47), 16.5),
+                        new Sphere("glass", refractive(RGB.WHITE.mult(0.999)),new Point3d(73, 16.5, 78), 16.5),
+
+                        new SphereSDF("diff", diffuse(0.75, 0.75, 0.25),new Point3d(27, 16.5, 100), 16.5),
+
+                        new Sphere("light", emissive(RGB.WHITE.mult(12)),new Point3d(50, 681.6 - 0.27, 81.6), 600.0)
+                );
+        return new Scene(
+                new Camera(
+                        Ray.of(
+                                new Point3d(50, 52, 295.6),
+                                new Vector3d(0, -0.042612, -1)
+                        ), 0.5135
+                ), objects);
     }
 
     public static Scene horizon() {

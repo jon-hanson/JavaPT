@@ -33,8 +33,8 @@ public class Debug {
 
         final RNG rng = new RNG(5, 99999);
 
-        final int sx = 265;
-        final int sy = 300;
+        final int sx = 220;
+        final int sy = 236;
 
         final RGB ss = rdr.subPixelRad(rng, sx, sy, 1, 1);
         logger.info("RGB={}", ss);

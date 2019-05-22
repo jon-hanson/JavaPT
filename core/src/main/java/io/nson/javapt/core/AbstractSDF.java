@@ -1,10 +1,12 @@
 package io.nson.javapt.core;
 
 import io.nson.javapt.autodiff.*;
+import org.apache.logging.log4j.*;
 
 import java.util.OptionalDouble;
 
 public abstract class AbstractSDF extends AbstractShape implements SDF {
+    private static final Logger logger = LogManager.getLogger(AbstractSDF.class);
 
     public AbstractSDF(String name, Material material) {
         super(name, material);
@@ -13,12 +15,13 @@ public abstract class AbstractSDF extends AbstractShape implements SDF {
     @Override
     public OptionalDouble intersect(Ray ray, double eps) {
 
-        float t = 0.0f;
+        double t = eps * 100;
 
         for (int i = 0; i < maxSteps; ++i) {
             final Point3d p = ray.apply(t);
             final double dist = distance(p);
             if (dist < eps) {
+                //logger.info("intersect({}) = {} dist={}", t, ray.apply(t), dist);
                 return OptionalDouble.of(t);
             } else if (dist > Integer.MAX_VALUE) {
                 return OptionalDouble.empty();
@@ -32,6 +35,8 @@ public abstract class AbstractSDF extends AbstractShape implements SDF {
 
     @Override
     public Vector3d normal(Point3d p) {
+//        final Vector3d n = deriveNormal(p);
+//        logger.info("Normal({}) -> {}", p, n);
         return deriveNormal(p);
     }
 
