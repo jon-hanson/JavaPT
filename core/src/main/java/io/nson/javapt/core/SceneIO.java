@@ -5,7 +5,6 @@ import org.typemeta.funcj.codec.Codecs;
 import org.typemeta.funcj.codec.json.JsonCodecCore;
 
 import java.io.*;
-import java.util.List;
 
 public class SceneIO {
     private static final Logger logger = LogManager.getLogger(SceneIO.class);
@@ -14,13 +13,14 @@ public class SceneIO {
     static {
         codec = Codecs.jsonCodec();
         codec.config().registerAllowedPackage(io.nson.javapt.core.Scene.class.getPackage());
-
+        codec.config().registerAllowedPackage(io.nson.javapt.geom.Point3d.class.getPackage());
+        codec.config().registerAllowedPackage(io.nson.javapt.sdf.SDFShape.class.getPackage());
     }
 
     public static Scene load(String fileName) {
         logger.info("Loading scene form " + fileName);
         try(final FileReader rdr = new FileReader(fileName)) {
-            return codec.decode(Scene.class, rdr);
+            return codec.decode(Scene.class, rdr).build();
         } catch (IOException ex) {
             logger.error("Failed to load file", ex);
             throw new RuntimeException("Failed to load file", ex);

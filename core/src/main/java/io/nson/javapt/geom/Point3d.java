@@ -1,4 +1,4 @@
-package io.nson.javapt.core;
+package io.nson.javapt.geom;
 
 import static java.lang.Double.doubleToLongBits;
 

@@ -116,30 +116,11 @@ public class DualNd {
         );
     }
 
-    public static void main(String[] args) {
-        test(0);
-        test(1);
-        test(2);
+    public DualNd min(DualNd rhs) {
+        return this.v <= rhs.v ? this : rhs;
     }
 
-    static void test(double x) {
-        System.out.println(x + " -> " + f(x));
-    }
-
-    // f(x) = 3x^2 + 5
-    // f'(x) = 6x
-    static DualNd f2(double d) {
-        final DualNd x = new DualNd(d, 1);
-        return real(3).mult(x).mult(x)
-                .add(real(5));
-    }
-
-    // f(x) = 2x^2 + 3x + 5
-    // f'(x) = 4x + 3
-    static DualNd f(double d) {
-        final DualNd x = new DualNd(d, 1);
-        return real(2).mult(x).mult(x)
-                .add(real(3).mult(x))
-                .add(real(5));
+    public DualNd max(DualNd rhs) {
+        return this.v >= rhs.v ? this : rhs;
     }
 }

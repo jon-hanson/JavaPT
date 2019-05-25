@@ -18,6 +18,10 @@
         {
             "@type":"io.nson.javapt.core.Shapes$Plane",
             "@value":{
+                "side":"X",
+                "posFacing":true,
+                "v":1,
+                "name":"left",
                 "material":{
                     "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
@@ -33,16 +37,16 @@
                         },
                         "emis":false
                     }
-                },
-                "side":"X",
-                "posFacing":true,
-                "v":1,
-                "name":"left"
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.Shapes$Plane",
             "@value":{
+                "side":"X",
+                "posFacing":false,
+                "v":99,
+                "name":"right",
                 "material":{
                     "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
@@ -58,16 +62,16 @@
                         },
                         "emis":false
                     }
-                },
-                "side":"X",
-                "posFacing":false,
-                "v":99,
-                "name":"right"
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.Shapes$Plane",
             "@value":{
+                "side":"Z",
+                "posFacing":true,
+                "v":0,
+                "name":"back",
                 "material":{
                     "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
@@ -83,48 +87,23 @@
                         },
                         "emis":false
                     }
-                },
-                "side":"Z",
-                "posFacing":true,
-                "v":0,
-                "name":"back"
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.Shapes$Plane",
             "@value":{
-                "material":{
-                    "@type":"io.nson.javapt.core.Diffuse",
-                    "@value":{
-                        "colour":{
-                            "red":0,
-                            "green":0,
-                            "blue":0
-                        },
-                        "emColour":{
-                            "red":0,
-                            "green":0,
-                            "blue":0
-                        },
-                        "emis":false
-                    }
-                },
                 "side":"Z",
                 "posFacing":false,
                 "v":170,
-                "name":"front"
-            }
-        },
-        {
-            "@type":"io.nson.javapt.core.Shapes$Plane",
-            "@value":{
+                "name":"front",
                 "material":{
                     "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
                         "colour":{
-                            "red":0.75,
-                            "green":0.75,
-                            "blue":0.75
+                            "red":0,
+                            "green":0,
+                            "blue":0
                         },
                         "emColour":{
                             "red":0,
@@ -133,16 +112,16 @@
                         },
                         "emis":false
                     }
-                },
+                }
+            }
+        },
+        {
+            "@type":"io.nson.javapt.core.Shapes$Plane",
+            "@value":{
                 "side":"Y",
                 "posFacing":true,
                 "v":0,
-                "name":"bottom"
-            }
-        },
-        {
-            "@type":"io.nson.javapt.core.Shapes$Plane",
-            "@value":{
+                "name":"bottom",
                 "material":{
                     "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
@@ -158,16 +137,44 @@
                         },
                         "emis":false
                     }
-                },
+                }
+            }
+        },
+        {
+            "@type":"io.nson.javapt.core.Shapes$Plane",
+            "@value":{
                 "side":"Y",
                 "posFacing":false,
                 "v":81.6,
-                "name":"top"
+                "name":"top",
+                "material":{
+                    "@type":"io.nson.javapt.core.Diffuse",
+                    "@value":{
+                        "colour":{
+                            "red":0.75,
+                            "green":0.75,
+                            "blue":0.75
+                        },
+                        "emColour":{
+                            "red":0,
+                            "green":0,
+                            "blue":0
+                        },
+                        "emis":false
+                    }
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.Shapes$Sphere",
             "@value":{
+                "centre":{
+                    "x":27,
+                    "y":60,
+                    "z":47
+                },
+                "radius":16.5,
+                "name":"mirror",
                 "material":{
                     "@type":"io.nson.javapt.core.Reflective",
                     "@value":{
@@ -182,19 +189,19 @@
                             "blue":0
                         }
                     }
-                },
-                "centre":{
-                    "x":27,
-                    "y":60,
-                    "z":47
-                },
-                "radius":16.5,
-                "name":"mirror"
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.Shapes$Sphere",
             "@value":{
+                "centre":{
+                    "x":73,
+                    "y":16.5,
+                    "z":78
+                },
+                "radius":16.5,
+                "name":"glass",
                 "material":{
                     "@type":"io.nson.javapt.core.Refractive",
                     "@value":{
@@ -209,19 +216,19 @@
                             "blue":0
                         }
                     }
-                },
-                "centre":{
-                    "x":73,
-                    "y":16.5,
-                    "z":78
-                },
-                "radius":16.5,
-                "name":"glass"
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.Shapes$Sphere",
             "@value":{
+                "centre":{
+                    "x":27,
+                    "y":16.5,
+                    "z":100
+                },
+                "radius":16.5,
+                "name":"diff",
                 "material":{
                     "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
@@ -237,19 +244,19 @@
                         },
                         "emis":false
                     }
-                },
-                "centre":{
-                    "x":27,
-                    "y":16.5,
-                    "z":100
-                },
-                "radius":16.5,
-                "name":"diff"
+                }
             }
         },
         {
             "@type":"io.nson.javapt.core.Shapes$Sphere",
             "@value":{
+                "centre":{
+                    "x":50,
+                    "y":681.33,
+                    "z":81.6
+                },
+                "radius":600,
+                "name":"light",
                 "material":{
                     "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
@@ -265,14 +272,7 @@
                         },
                         "emis":true
                     }
-                },
-                "centre":{
-                    "x":50,
-                    "y":681.33,
-                    "z":81.6
-                },
-                "radius":600,
-                "name":"light"
+                }
             }
         }
     ]

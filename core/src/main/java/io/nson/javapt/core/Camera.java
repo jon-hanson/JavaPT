@@ -1,5 +1,7 @@
 package io.nson.javapt.core;
 
+import io.nson.javapt.geom.Ray;
+
 public class Camera {
     public final Ray ray;
     public final double fov;

@@ -1,6 +1,6 @@
 package io.nson.javapt.autodiff;
 
-import io.nson.javapt.core.Point3d;
+import io.nson.javapt.geom.Point3d;
 
 public final class DualPoint3d {
     public static final DualPoint3d ZERO = new DualPoint3d(DualNd.ZERO, DualNd.ZERO, DualNd.ZERO);

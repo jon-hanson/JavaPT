@@ -1,15 +1,34 @@
-package io.nson.javapt.core;
+package io.nson.javapt.sdf;
 
 import io.nson.javapt.autodiff.*;
+import io.nson.javapt.core.*;
+import io.nson.javapt.geom.*;
 import org.apache.logging.log4j.*;
 
 import java.util.OptionalDouble;
 
-public abstract class AbstractSDF extends AbstractShape implements SDF {
-    private static final Logger logger = LogManager.getLogger(AbstractSDF.class);
+public class SDFShape extends AbstractShape implements SDF {
+    private static final Logger logger = LogManager.getLogger(SDFShape.class);
 
-    public AbstractSDF(String name, Material material) {
+    private final SDF sdf;
+
+    public SDFShape(String name, Material material, SDF sdf) {
         super(name, material);
+        this.sdf = sdf;
+    }
+
+    private SDFShape() {
+        super(null, null);
+        this.sdf = null;
+    }
+
+    public SDFShape build() {
+        if (sdf instanceof DeferredSDF) {
+            final DeferredSDF deferredSDF = (DeferredSDF)sdf;
+            return new SDFShape(name, material, deferredSDF.build());
+        } else {
+            return this;
+        }
     }
 
     @Override
@@ -63,5 +82,10 @@ public abstract class AbstractSDF extends AbstractShape implements SDF {
         } while (dx == 0.0f && dy == 0.0f && dz == 0.0f);
 
         return new Vector3d(dx, dy, dz).normalise();
+    }
+
+    @Override
+    public DualNd distance(DualPoint3d p) {
+        return sdf.distance(p);
     }
 }

@@ -1,6 +1,6 @@
 package io.nson.javapt.autodiff;
 
-import io.nson.javapt.core.Vector3d;
+import io.nson.javapt.geom.Vector3d;
 
 public final class DualVector3d {
 

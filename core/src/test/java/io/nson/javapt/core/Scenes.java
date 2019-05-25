@@ -1,6 +1,9 @@
 package io.nson.javapt.core;
 
 import io.nson.javapt.core.Shapes.*;
+import io.nson.javapt.geom.*;
+import io.nson.javapt.sdf.*;
+import org.typemeta.funcj.json.model.JsValue;
 
 import java.util.*;
 
@@ -8,11 +11,11 @@ import static io.nson.javapt.core.Material.*;
 
 public abstract class Scenes {
     public static void main(String[] args) {
-        //SceneIO.save(cornell(), "scenes/cornell.json");
-        //SceneIO.save(cornell2(), "scenes/cornell2.json");
+        SceneIO.save(cornell(), "scenes/cornell.json");
+        SceneIO.save(cornell2(), "scenes/cornell2.json");
         SceneIO.save(cornell3(), "scenes/cornell3.json");
-        //SceneIO.save(horizon(), "scenes/horizon.json");
-        //SceneIO.save(redGreenBlue(), "scenes/rgb.json");
+        SceneIO.save(horizon(), "scenes/horizon.json");
+        SceneIO.save(redGreenBlue(), "scenes/rgb.json");
     }
 
     public static Scene cornell() {
@@ -67,6 +70,7 @@ public abstract class Scenes {
     }
 
     public static Scene cornell3() {
+        final SDFAlgebra<JsValue> sdfAlg = SDFSerialise.INSTANCE;
         final List<Shape> objects =
                 Arrays.asList(
                         new Plane("left", diffuse(0.75, 0.25, 0.25), Plane.Axis.X, true, 1),
@@ -79,7 +83,9 @@ public abstract class Scenes {
                         new Sphere("mirror", reflective(RGB.WHITE.mult(0.999)),new Point3d(27, 60, 47), 16.5),
                         new Sphere("glass", refractive(RGB.WHITE.mult(0.999)),new Point3d(73, 16.5, 78), 16.5),
 
-                        new SphereSDF("diff", diffuse(0.75, 0.75, 0.25),new Point3d(27, 16.5, 100), 16.5),
+                        new SDFShape("diff", diffuse(0.75, 0.75, 0.25),
+                                new DeferredSDF(sdfAlg.displace(sdfAlg.sphere(16.5), new Vector3d(27, 16.5, 100)))
+                        ),
 
                         new Sphere("light", emissive(RGB.WHITE.mult(12)),new Point3d(50, 681.6 - 0.27, 81.6), 600.0)
                 );
@@ -91,7 +97,6 @@ public abstract class Scenes {
                         ), 0.5135
                 ), objects);
     }
-
     public static Scene horizon() {
         final double W = 100.0;
         final double W2 = W * 2.0 / 3.0;

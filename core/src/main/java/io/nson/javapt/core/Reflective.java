@@ -1,5 +1,7 @@
 package io.nson.javapt.core;
 
+import io.nson.javapt.geom.*;
+
 public class Reflective implements Material {
     public final RGB colour;
     public final RGB emColour;

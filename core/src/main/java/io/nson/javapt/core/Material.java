@@ -1,5 +1,7 @@
 package io.nson.javapt.core;
 
+import io.nson.javapt.geom.*;
+
 public interface Material {
 
     static Material diffuse(double r, double g, double b) {

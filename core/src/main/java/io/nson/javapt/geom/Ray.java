@@ -1,4 +1,4 @@
-package io.nson.javapt.core;
+package io.nson.javapt.geom;
 
 public class Ray {
     public static Ray of(Point3d origin, Vector3d dir) {

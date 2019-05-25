@@ -1,5 +1,6 @@
 package io.nson.javapt.core;
 
+import io.nson.javapt.geom.*;
 import org.apache.logging.log4j.*;
 import org.typemeta.funcj.util.Exceptions;
 

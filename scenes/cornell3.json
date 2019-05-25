@@ -220,14 +220,27 @@
             }
         },
         {
-            "@type":"io.nson.javapt.core.SphereSDF",
+            "@type":"io.nson.javapt.sdf.SDFShape",
             "@value":{
-                "centre":{
-                    "x":27,
-                    "y":16.5,
-                    "z":100
+                "sdf":{
+                    "@type":"io.nson.javapt.sdf.DeferredSDF",
+                    "@value":{
+                        "value":{
+                            "displace":{
+                                "target":{
+                                    "sphere":{
+                                        "radius":16.5
+                                    }
+                                },
+                                "shift":{
+                                    "dx":27,
+                                    "dy":16.5,
+                                    "dz":100
+                                }
+                            }
+                        }
+                    }
                 },
-                "radius":16.5,
                 "name":"diff",
                 "material":{
                     "@type":"io.nson.javapt.core.Diffuse",

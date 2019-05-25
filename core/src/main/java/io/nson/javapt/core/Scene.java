@@ -1,6 +1,11 @@
 package io.nson.javapt.core;
 
+import io.nson.javapt.geom.*;
+import io.nson.javapt.sdf.SDFShape;
+
 import java.util.*;
+
+import static java.util.stream.Collectors.toList;
 
 public class Scene {
     public static class Intersection<T> {
@@ -24,6 +29,18 @@ public class Scene {
     private Scene() {
         this.camera = null;
         this.shapes = null;
+    }
+
+    public Scene build() {
+        if (shapes.stream().anyMatch(SDFShape.class::isInstance)) {
+            final List<Shape> shapes2 =
+                    shapes.stream()
+                            .map(s -> SDFShape.class.isInstance(s) ? ((SDFShape)s).build() : s)
+                            .collect(toList());
+            return new Scene(camera, shapes2);
+        } else {
+            return this;
+        }
     }
 
     public Optional<Intersection<Point3d>> intersect(Ray ray) {

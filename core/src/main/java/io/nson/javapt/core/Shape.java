@@ -1,5 +1,7 @@
 package io.nson.javapt.core;
 
+import io.nson.javapt.geom.*;
+
 import java.util.OptionalDouble;
 
 public interface Shape {

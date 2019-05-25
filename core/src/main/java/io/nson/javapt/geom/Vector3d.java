@@ -1,4 +1,4 @@
-package io.nson.javapt.core;
+package io.nson.javapt.geom;
 
 public final class Vector3d {
 
