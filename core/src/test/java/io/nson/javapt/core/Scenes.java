@@ -11,11 +11,11 @@ import static io.nson.javapt.core.Material.*;
 
 public abstract class Scenes {
     public static void main(String[] args) {
-        SceneIO.save(cornell(), "scenes/cornell.json");
-        SceneIO.save(cornell2(), "scenes/cornell2.json");
+        //SceneIO.save(cornell(), "scenes/cornell.json");
+        //SceneIO.save(cornell2(), "scenes/cornell2.json");
         SceneIO.save(cornell3(), "scenes/cornell3.json");
-        SceneIO.save(horizon(), "scenes/horizon.json");
-        SceneIO.save(redGreenBlue(), "scenes/rgb.json");
+        //SceneIO.save(horizon(), "scenes/horizon.json");
+        //SceneIO.save(redGreenBlue(), "scenes/rgb.json");
     }
 
     public static Scene cornell() {
@@ -84,7 +84,12 @@ public abstract class Scenes {
                         new Sphere("glass", refractive(RGB.WHITE.mult(0.999)),new Point3d(73, 16.5, 78), 16.5),
 
                         new SDFShape("diff", diffuse(0.75, 0.75, 0.25),
-                                new DeferredSDF(sdfAlg.displace(sdfAlg.sphere(16.5), new Vector3d(27, 16.5, 100)))
+                                new DeferredSDF(
+                                        sdfAlg.subtract(
+                                            sdfAlg.displace(sdfAlg.sphere(16.5), new Vector3d(27, 16.5, 100)),
+                                            sdfAlg.displace(sdfAlg.sphere(10), new Vector3d(30, 16.5, 100))
+                                        )
+                                )
                         ),
 
                         new Sphere("light", emissive(RGB.WHITE.mult(12)),new Point3d(50, 681.6 - 0.27, 81.6), 600.0)

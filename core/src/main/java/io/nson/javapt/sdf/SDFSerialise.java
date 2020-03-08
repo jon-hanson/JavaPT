@@ -13,6 +13,9 @@ public enum SDFSerialise implements SDFAlgebra<JsValue> {
         switch (field.name()) {
             case "sphere": return decodeSphere(field.value().asObject());
             case "displace": return decodeDisplace(field.value().asObject());
+            case "intersect": return decodeIntersect(field.value().asObject());
+            case "subtract": return decodeSubtract(field.value().asObject());
+            case "torus": return decodeTorus(field.value().asObject());
             case "union": return decodeUnion(field.value().asObject());
             default: throw new IllegalArgumentException("Unrecognised SDF tag '" + field.name() + "'");
         }
@@ -49,6 +52,23 @@ public enum SDFSerialise implements SDFAlgebra<JsValue> {
     }
 
     @Override
+    public JsValue torus(double inR, double outR) {
+        return JSAPI.obj(
+                JSAPI.field("torus", JSAPI.obj(
+                        JSAPI.field("inR", JSAPI.num(inR)),
+                        JSAPI.field("outR", JSAPI.num(outR))
+                ))
+        );
+    }
+
+    public static SDF decodeTorus(JsObject jso) {
+        return SDFFactory.INSTANCE.torus(
+                jso.get("inR").asNumber().value(),
+                jso.get("outR").asNumber().value()
+        );
+    }
+
+    @Override
     public JsValue displace(JsValue target, Vector3d shift) {
         return JSAPI.obj(
                 JSAPI.field("displace", JSAPI.obj(
@@ -81,4 +101,39 @@ public enum SDFSerialise implements SDFAlgebra<JsValue> {
                 decode(jso.get("rhs"))
         );
     }
+
+    @Override
+    public JsValue intersect(JsValue lhs, JsValue rhs) {
+        return JSAPI.obj(
+                JSAPI.field("intersect", JSAPI.obj(
+                        JSAPI.field("lhs", lhs),
+                        JSAPI.field("rhs", rhs)
+                ))
+        );
+    }
+
+    public static SDF decodeIntersect(JsObject jso) {
+        return SDFFactory.INSTANCE.intersect(
+                decode(jso.get("lhs")),
+                decode(jso.get("rhs"))
+        );
+    }
+
+    @Override
+    public JsValue subtract(JsValue lhs, JsValue rhs) {
+        return JSAPI.obj(
+                JSAPI.field("subtract", JSAPI.obj(
+                        JSAPI.field("lhs", lhs),
+                        JSAPI.field("rhs", rhs)
+                ))
+        );
+    }
+
+    public static SDF decodeSubtract(JsObject jso) {
+        return SDFFactory.INSTANCE.subtract(
+                decode(jso.get("lhs")),
+                decode(jso.get("rhs"))
+        );
+    }
+
 }

@@ -35,7 +35,7 @@
                             "green":0,
                             "blue":0
                         },
-                        "emis":false
+                        "emissive":false
                     }
                 }
             }
@@ -60,7 +60,7 @@
                             "green":0,
                             "blue":0
                         },
-                        "emis":false
+                        "emissive":false
                     }
                 }
             }
@@ -85,7 +85,7 @@
                             "green":0,
                             "blue":0
                         },
-                        "emis":false
+                        "emissive":false
                     }
                 }
             }
@@ -110,7 +110,7 @@
                             "green":0,
                             "blue":0
                         },
-                        "emis":false
+                        "emissive":false
                     }
                 }
             }
@@ -135,7 +135,7 @@
                             "green":0,
                             "blue":0
                         },
-                        "emis":false
+                        "emissive":false
                     }
                 }
             }
@@ -160,7 +160,7 @@
                             "green":0,
                             "blue":0
                         },
-                        "emis":false
+                        "emissive":false
                     }
                 }
             }
@@ -242,7 +242,7 @@
                             "green":12,
                             "blue":12
                         },
-                        "emis":true
+                        "emissive":true
                     }
                 }
             }

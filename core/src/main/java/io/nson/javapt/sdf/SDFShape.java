@@ -34,19 +34,34 @@ public class SDFShape extends AbstractShape implements SDF {
     @Override
     public OptionalDouble intersect(Ray ray, double eps) {
 
-        double t = eps * 100;
+        double t = eps * 1e2;
+//eps = 5;
+        if (distance(ray.apply(t)) >= 0) {
+            for (int i = 0; i < maxSteps; ++i) {
+                final Point3d p = ray.apply(t);
+                final double dist = distance(p);
+                if (dist < eps) {
+                    //logger.info("intersect({}) = {} dist={}", t, ray.apply(t), dist);
+                    return OptionalDouble.of(t);
+                } else if (dist > Integer.MAX_VALUE) {
+                    return OptionalDouble.empty();
+                }
 
-        for (int i = 0; i < maxSteps; ++i) {
-            final Point3d p = ray.apply(t);
-            final double dist = distance(p);
-            if (dist < eps) {
-                //logger.info("intersect({}) = {} dist={}", t, ray.apply(t), dist);
-                return OptionalDouble.of(t);
-            } else if (dist > Integer.MAX_VALUE) {
-                return OptionalDouble.empty();
+                t += dist;
             }
+        } else {
+            for (int i = 0; i < maxSteps; ++i) {
+                final Point3d p = ray.apply(t);
+                final double dist = distance(p);
+                if (dist > -eps) {
+                    //logger.info("intersect({}) = {} dist={}", t, ray.apply(t), dist);
+                    return OptionalDouble.of(t);
+                } else if (dist > Integer.MAX_VALUE) {
+                    return OptionalDouble.empty();
+                }
 
-            t += dist;
+                t -= dist;
+            }
         }
 
         return OptionalDouble.of(t);
@@ -56,6 +71,7 @@ public class SDFShape extends AbstractShape implements SDF {
     public Vector3d normal(Point3d p) {
 //        final Vector3d n = deriveNormal(p);
 //        logger.info("Normal({}) -> {}", p, n);
+        //return estimateNormal(p);
         return deriveNormal(p);
     }
 

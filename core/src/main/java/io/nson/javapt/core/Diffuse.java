@@ -6,18 +6,18 @@ public class Diffuse implements Material {
 
     public final RGB colour;
     public final RGB emColour;
-    public final boolean emis;
+    public final boolean emissive;
 
-    public Diffuse(RGB colour, RGB emColour, boolean emis) {
+    public Diffuse(RGB colour, RGB emColour, boolean emissive) {
         this.colour = colour;
         this.emColour = emColour;
-        this.emis = emis;
+        this.emissive = emissive;
     }
 
     private Diffuse() {
         this.colour = null;
         this.emColour = null;
-        this.emis = false;
+        this.emissive = false;
     }
 
     public Diffuse(RGB colour, RGB emColour) {

@@ -1,6 +1,6 @@
 package io.nson.javapt.autodiff;
 
-import io.nson.javapt.geom.Point3d;
+import io.nson.javapt.geom.*;
 
 public final class DualPoint3d {
     public static final DualPoint3d ZERO = new DualPoint3d(DualNd.ZERO, DualNd.ZERO, DualNd.ZERO);
@@ -101,8 +101,24 @@ public final class DualPoint3d {
         return new DualPoint3d(x.add(rhs.dx), y.add(rhs.dy), z.add(rhs.dz));
     }
 
+    public DualPoint3d add(Vector3d rhs) {
+        return new DualPoint3d(x.add(rhs.dx), y.add(rhs.dy), z.add(rhs.dz));
+    }
+
     public DualPoint3d sub(DualVector3d rhs) {
         return new DualPoint3d(x.sub(rhs.dx), y.sub(rhs.dy), z.sub(rhs.dz));
+    }
+
+    public DualPoint3d sub(Vector3d rhs) {
+        return new DualPoint3d(x.sub(rhs.dx), y.sub(rhs.dy), z.sub(rhs.dz));
+    }
+
+    public DualVector3d sub(DualPoint3d rhs) {
+        return new DualVector3d(x.sub(rhs.x), y.sub(rhs.y), z.sub(rhs.z));
+    }
+
+    public DualVector3d sub(Point3d rhs) {
+        return new DualVector3d(x.sub(rhs.x), y.sub(rhs.y), z.sub(rhs.z));
     }
 
     public DualPoint3d mult(double s) {
@@ -111,10 +127,6 @@ public final class DualPoint3d {
 
     public DualPoint3d div(double s) {
         return new DualPoint3d(x.div(s), y.div(s), z.div(s));
-    }
-
-    public DualVector3d sub(DualPoint3d rhs) {
-        return new DualVector3d(x.sub(rhs.x), y.sub(rhs.y), z.sub(rhs.z));
     }
 
     public DualNd length() {

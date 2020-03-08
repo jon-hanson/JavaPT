@@ -166,27 +166,40 @@
             }
         },
         {
-            "@type":"io.nson.javapt.core.Shapes$Sphere",
-            "@value":{
-                "centre":{
-                    "x":27,
-                    "y":16.5,
-                    "z":100
+            "@type":"io.nson.javapt.sdf.SDFShape",
+            "@value": {
+                "sdf": {
+                    "@type": "io.nson.javapt.sdf.DeferredSDF",
+                    "@value": {
+                        "value": {
+                            "displace": {
+                                "target": {
+                                    "sphere": {
+                                        "radius": 16.5
+                                    }
+                                },
+                                "shift": {
+                                    "dx": 27,
+                                    "dy": 16.5,
+                                    "dz": 100
+                                }
+                            }
+                        }
+                    }
                 },
-                "radius":16.5,
-                "name":"diff",
-                "material":{
-                    "@type":"io.nson.javapt.core.Reflective",
-                    "@value":{
-                        "colour":{
-                            "red":0.75,
-                            "green":0.75,
-                            "blue":0.25
+                "name": "diff",
+                "material": {
+                    "@type": "io.nson.javapt.core.Reflective",
+                    "@value": {
+                        "colour": {
+                            "red": 0.75,
+                            "green": 0.75,
+                            "blue": 0.25
                         },
-                        "emColour":{
-                            "red":0,
-                            "green":0,
-                            "blue":0
+                        "emColour": {
+                            "red": 0,
+                            "green": 0,
+                            "blue": 0
                         }
                     }
                 }

@@ -57,6 +57,12 @@ public class DualNd {
         }
     }
 
+    public enum Sign { NEG, ZERO, POS }
+
+    public Sign sign() {
+        return v > 0 ? Sign.POS : (v < 0 ? Sign.NEG : Sign.ZERO);
+    }
+
     public DualNd neg() {
         return new DualNd(-v, -d);
     }
@@ -107,6 +113,10 @@ public class DualNd {
     public DualNd sqrt() {
         final double sqrt = Math.sqrt(v);
         return new DualNd(sqrt, d / (sqrt + sqrt));
+    }
+
+    public DualNd sqr() {
+        return mult(this);
     }
 
     public DualNd pow(double e) {

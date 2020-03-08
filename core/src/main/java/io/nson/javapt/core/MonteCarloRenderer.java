@@ -16,15 +16,16 @@ public class MonteCarloRenderer extends Renderer {
                 .map(isectP -> {
                     final Vector3d n = isectP.shape.normal(isectP.t);
                     final Vector3d nl = n.dot(ray.dir) < 0 ? n : n.neg();
-//logger.info("p={} isect={} acc={} nl={}", isectP.t, isectP.shape, acc, nl);
+//logger.info("ray={} p={} isect={} acc={} nl={}", ray, isectP.t, isectP.shape, acc, nl);
                     final int newDepth = depth + 1;
 
                     final RGB colour = isectP.shape.material().colour().mult(att);
                     final RGB acc2 = acc.add(isectP.shape.material().emission().mult(att));
 
-                    if (newDepth > 5) {
+
+                    if (newDepth > 10) {
                         // Modified Russian roulette.
-                        final double max = colour.max() * MathUtil.sqr(1.0 - (double)depth / Renderer.MAX_DEPTH);
+                        final double max = colour.max() * MathUtil.sqr(1.0 - (double)(depth - 10) / Renderer.MAX_DEPTH);
                         final double rnd = rng.nextDouble01();
                         if (rnd >= max) {
                             return acc2;

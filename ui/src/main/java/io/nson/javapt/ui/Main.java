@@ -19,7 +19,7 @@ public class Main {
                 800, 800,
                 64,
                 0,
-                8,
+                4,
                 true,
                 Optional.empty(),
                 Optional.empty()

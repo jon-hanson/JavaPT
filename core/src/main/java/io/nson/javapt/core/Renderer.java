@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 public abstract class Renderer implements AutoCloseable {
     private static final Logger logger = LogManager.getLogger(Renderer.class);
 
-    protected static final int MAX_DEPTH = 2000;
+    protected static final int MAX_DEPTH = 512;
 
     protected final int width;
     protected final int height;
