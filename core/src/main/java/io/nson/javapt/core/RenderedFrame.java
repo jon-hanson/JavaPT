@@ -1,6 +1,6 @@
 package io.nson.javapt.core;
 
-public class Frame {
+public class RenderedFrame {
 
     public static class Row {
         public final SuperSamp[] columns;
@@ -15,14 +15,14 @@ public class Frame {
     public final int height;
     public final Row[] rows;
 
-    public Frame(long seed, int width, int height, Row[] rows) {
+    public RenderedFrame(long seed, int width, int height, Row[] rows) {
         this.seed = seed;
         this.width = width;
         this.height = height;
         this.rows = rows;
     }
 
-    public Frame(long seed, int width, int height) {
+    public RenderedFrame(long seed, int width, int height) {
         this(seed, width, height, new Row[height]);
     }
 
@@ -34,7 +34,7 @@ public class Frame {
         return rows[r].columns[c];
     }
 
-    public Row merge(int y, Frame.Row row, int n) {
+    public Row merge(int y, RenderedFrame.Row row, int n) {
         if (n == 0) {
             rows[y] = row;
         } else {

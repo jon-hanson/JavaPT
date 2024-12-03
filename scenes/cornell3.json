@@ -245,13 +245,13 @@
                                     "displace":{
                                         "target":{
                                             "sphere":{
-                                                "radius":14
+                                                "radius":12
                                             }
                                         },
                                         "shift":{
-                                            "dx":35,
-                                            "dy":16.5,
-                                            "dz":110
+                                            "dx":30,
+                                            "dy":25,
+                                            "dz":100
                                         }
                                     }
                                 }
@@ -261,7 +261,7 @@
                 },
                 "name":"diff",
                 "material":{
-                    "@type":"io.nson.javapt.core.Reflective",
+                    "@type":"io.nson.javapt.core.Diffuse",
                     "@value":{
                         "colour":{
                             "red":0.75,
@@ -272,7 +272,8 @@
                             "red":0,
                             "green":0,
                             "blue":0
-                        }
+                        },
+                        "emissive":false
                     }
                 }
             }

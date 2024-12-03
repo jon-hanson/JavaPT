@@ -16,7 +16,7 @@
     </modules>
 
     <properties>
-        <jdk.version>11</jdk.version>
+        <jdk.version>21</jdk.version>
 
         <!-- Platform-independent build -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

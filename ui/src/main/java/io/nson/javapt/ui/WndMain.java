@@ -1,7 +1,7 @@
 package io.nson.javapt.ui;
 
 
-import io.nson.javapt.core.Frame;
+import io.nson.javapt.core.RenderedFrame;
 import org.apache.logging.log4j.*;
 
 import javax.swing.*;
@@ -66,7 +66,7 @@ public class WndMain extends Main {
     }
 
     @Override
-    protected void writeRow(int y, Frame.Row row) {
+    protected void writeRow(int y, RenderedFrame.Row row) {
         final int sy = h - y - 1;
         super.writeRow(y, row);
 

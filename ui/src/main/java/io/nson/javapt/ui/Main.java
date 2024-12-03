@@ -36,7 +36,7 @@ public class Main {
     protected final int h;
     protected final Scene scene;
     protected final Renderer rdr;
-    protected final Frame renderData;
+    protected final RenderedFrame renderData;
     protected final BufferedImage image;
     protected final Consumer<Integer> renderFn;
 
@@ -46,7 +46,7 @@ public class Main {
         this.h = cfg.height;
         this.scene = SceneIO.load(cfg.sceneFile);
         this.rdr = new MonteCarloRenderer(w, h, cfg.threads, scene);
-        this.renderData = new Frame(cfg.seed, w, h);
+        this.renderData = new RenderedFrame(cfg.seed, w, h);
         this.image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         this.renderFn = this::renderFrame;
     }
@@ -79,11 +79,11 @@ public class Main {
     }
 
     protected void mergeRow(int frameI, int y, SuperSamp[] cells) {
-        final Frame.Row row = renderData.merge(y, new Frame.Row(cells), frameI);
+        final RenderedFrame.Row row = renderData.merge(y, new RenderedFrame.Row(cells), frameI);
         writeRow(y, row);
     }
 
-    protected void writeRow(int y, Frame.Row row) {
+    protected void writeRow(int y, RenderedFrame.Row row) {
         final int sy = h - y - 1;
         for (int sx = 0; sx < w; ++sx) {
             image.setRGB(sx, sy, ColourUtils.colVecToInt(row.columns[sx].clamp()));
